@@ -7,6 +7,7 @@
     ./display.nix
     ./network.nix
     ./packages.nix
+    ../../common/base
     ../../common/bluetooth.nix
     ../../users/sinuscosinustan
   ];
