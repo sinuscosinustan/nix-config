@@ -16,7 +16,6 @@ with lib;
 
   nix = {
     autoOptimiseStore = true;
-    package = pkgs.nixUnstable;
     gc = {
       automatic = true;
       dates     = "weekly";
