@@ -31,6 +31,15 @@
         "gpm" = "git push -o merge_request.create -o -u origin $(git rev-parse --abbrev-ref HEAD)";
       };
 
+      initExtra = "
+        export SSH_AUTH_SOCK=~/.ssh/ssh-agent.$(hostname).sock
+        ssh-add -l 2>/dev/null >/dev/null
+        if [ $? -ge 2 ]; then
+          ssh-agent -a \"$SSH_AUTH_SOCK\" >/dev/null
+        fi
+      ";
+
+
       oh-my-zsh = {
         enable = true;
         theme = "agnoster";
