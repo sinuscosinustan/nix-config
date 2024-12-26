@@ -13,7 +13,10 @@
   ];
 
   hardware = {
-    raspberry-pi."4".apply-overlays-dtmerge.enable = true;
+    raspberry-pi."4" = {
+      apply-overlays-dtmerge.enable = true;
+      bluetooth.enable = true;
+    };
   };
 
   boot = {

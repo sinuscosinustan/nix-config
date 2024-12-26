@@ -23,7 +23,7 @@
     kicad
 
     # browser
-    firefox
+    chromium
 
     # editor
     vim
