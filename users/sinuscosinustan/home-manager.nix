@@ -149,5 +149,25 @@
         };
       };
     };
+
+    dconf = {
+      settings = {
+        "org/gnome/desktop/interface" = {
+          color-scheme = "prefer-dark";
+          clock-format = "12h";
+          clock-show-weekday = true;
+        };
+        "org/gnome/desktop/media-handling" = {
+          automount = false;
+          automount-open = false;
+          autorun-never = true;
+        };
+        "org/gnome/mutter" = {
+          edge-tiling = true;
+          dynamic-workspaces = true;
+          experimental-features = ["variable-refresh-rate"];
+        };
+      };
+    };
   };
 }
