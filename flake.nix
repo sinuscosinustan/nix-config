@@ -1,19 +1,20 @@
 {
-  description = "NixOS configs by Tom";
+  description = "NixOS configs by Tan";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
     sops-nix.url = "github:Mic92/sops-nix";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, nixpkgs-master, sops-nix, home-manager }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, nixpkgs-master, sops-nix, home-manager, nixos-hardware }:
     let
       overlay-unstable = final: prev: {
         unstable = import inputs.nixpkgs-unstable { config.allowUnfree = true; system = final.system; };
@@ -39,12 +40,14 @@
           ];
           specialArgs = { inherit inputs; };
         };
-        iso = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+        bastelpi = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
           modules = [
-            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-            ./iso
+            ({ config, pkgs, ...}: { nixpkgs.overlays = [ overlay-unstable ]; })
+            ./hosts/bastelpi/configuration.nix
+            sops-nix.nixosModules.sops
           ];
+          specialArgs = { inherit inputs; };
         };
       };
     };
