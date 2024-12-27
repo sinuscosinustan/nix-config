@@ -120,6 +120,9 @@
 
           # Lock screen
           "Mod4+Shift+x" = "exec swaylock -c 000000";
+
+          # Resize
+          "Mod4+r" = "mode resize";
         };
 
         window = {

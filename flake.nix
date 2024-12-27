@@ -18,7 +18,14 @@
     let
       overlay-unstable = final: prev: {
         unstable = import inputs.nixpkgs-unstable { config.allowUnfree = true; system = final.system; };
-        master = import inputs.nixpkgs-master { config.allowUnfree = true; system = final.system; };
+        master = import inputs.nixpkgs-master {
+          config = {
+            allowUnfree = true;
+            segger-jlink.acceptLicense = true;
+            permittedInsecurePackages = [ "segger-jlink-qt4-810" ];
+          };
+          system = final.system;
+        };
       };
     in {
       nixosConfigurations = {

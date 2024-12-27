@@ -42,6 +42,8 @@
   ];
 
   services.openssh.enable = true;
+  virtualisation.docker.enable = true;
+  services.udev.packages = with pkgs; [ master.segger-jlink ];
 
   networking.hostName = "bastelpi";
   time.timeZone = "Europe/Berlin";

@@ -21,6 +21,8 @@
     bind
     whois
     kicad
+    tmux
+    usbutils
 
     # browser
     chromium
@@ -43,6 +45,7 @@
     python3
     virtualenv
     virt-manager
+    master.segger-jlink
     wireshark
     yarn
 
