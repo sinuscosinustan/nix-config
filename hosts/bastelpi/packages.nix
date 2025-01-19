@@ -31,7 +31,10 @@
     vim
 
     # video
+    janus-gateway
     vlc
+    v4l-utils
+    ustreamer
 
     # communication
     unstable.tmate

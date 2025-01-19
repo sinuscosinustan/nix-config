@@ -15,6 +15,7 @@
   hardware = {
     raspberry-pi."4" = {
       apply-overlays-dtmerge.enable = true;
+      tc358743.enable = true;
       bluetooth.enable = true;
     };
   };
